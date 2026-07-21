@@ -4,7 +4,7 @@
  */
 
 // الرابط الافتراضي للـ Apps Script الخاص بك
-const DEFAULT_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzOPpVGWK09ueExj_UGJki6fJXWF_iQjU6JnNi2aBMgrnJjRU3tu-NxVec-xu2II-7g/exec";
+const DEFAULT_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwP9bVhKAgeWe8ChXFNM1VcikU6--U9aUIvMVsNPFpuKVpyOxfI-spJ4k7botJpjpWw/exec";
 
 let appsScriptUrl = localStorage.getItem("appsScriptUrl");
 
@@ -149,6 +149,69 @@ function selectCategory(categoryKey) {
   }, 100);
 }
 
+// متغير حفظ صورة المتقدم بصيغة Base64
+let selectedPhotoData = null;
+
+/**
+ * دالة اختيار ومعاينة الصورة
+ */
+function handlePhotoSelect(event) {
+  const fileInput = event.target;
+  const file = fileInput.files[0];
+  
+  if (!file) return;
+
+  if (!file.type.startsWith('image/')) {
+    alert('يرجى اختيار صورة صالحة (PNG, JPG, WebP, GIF)');
+    fileInput.value = '';
+    return;
+  }
+
+  // الحد الأقصى 5 ميجابايت
+  if (file.size > 5 * 1024 * 1024) {
+    alert('حجم الصورة كبير جداً. الحد الأقصى المسموح به هو 5 ميجابايت.');
+    fileInput.value = '';
+    return;
+  }
+
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    const dataUrl = e.target.result;
+    const base64String = dataUrl.split(',')[1];
+    
+    selectedPhotoData = {
+      base64: base64String,
+      fileName: file.name,
+      mimeType: file.type
+    };
+
+    const previewImg = document.getElementById('photo-preview-img');
+    const fileNameText = document.getElementById('file-name-text');
+    const previewBox = document.getElementById('file-preview-box');
+    const customBtn = document.getElementById('file-custom-btn');
+
+    if (previewImg) previewImg.src = dataUrl;
+    if (fileNameText) fileNameText.innerText = file.name + ` (${(file.size / 1024).toFixed(1)} KB)`;
+    if (previewBox) previewBox.classList.remove('hidden');
+    if (customBtn) customBtn.classList.add('hidden');
+  };
+  reader.readAsDataURL(file);
+}
+
+/**
+ * دالة إزالة الصورة المختارة
+ */
+function removeSelectedPhoto() {
+  selectedPhotoData = null;
+  const fileInput = document.getElementById('photoInput');
+  const previewBox = document.getElementById('file-preview-box');
+  const customBtn = document.getElementById('file-custom-btn');
+
+  if (fileInput) fileInput.value = '';
+  if (previewBox) previewBox.classList.add('hidden');
+  if (customBtn) customBtn.classList.remove('hidden');
+}
+
 /**
  * دالة إرسال بيانات النموذج لـ Google Apps Script
  */
@@ -172,8 +235,13 @@ function submitForm(event) {
     payload[key] = value.trim();
   });
 
+  // إضافة بيانات الصورة إلى حمولة الطلب إذا تم اختيار صورة
+  if (selectedPhotoData) {
+    payload.photoData = selectedPhotoData;
+  }
+
   submitBtn.disabled = true;
-  btnText.innerText = "جاري إرسال طلبك...";
+  btnText.innerText = "جاري إرسال طلبك وصورتك...";
   btnIcon.classList.add("hidden");
   spinner.classList.remove("hidden");
 
@@ -195,6 +263,7 @@ function submitForm(event) {
     if (result.status === "success") {
       showStatusMessage("success", result.message);
       form.reset();
+      removeSelectedPhoto();
       
       setTimeout(() => {
         document.getElementById("form-section").classList.add("hidden");
@@ -502,7 +571,14 @@ function buildDetailTable() {
     const tr = document.createElement("tr");
     keys.forEach(key => {
       const td = document.createElement("td");
-      td.innerText = rowData[key] !== undefined ? rowData[key] : "";
+      const cellValue = rowData[key] !== undefined ? rowData[key] : "";
+
+      // إذا كان العمود هو "صورة مرفقة" وكانت القيمة رابطاً
+      if (key === "صورة مرفقة" && cellValue && cellValue.startsWith("http")) {
+        td.innerHTML = `<a href="${escapeHTML(cellValue)}" target="_blank" rel="noopener" class="table-img-link"><i class="fas fa-image"></i> عرض الصورة</a>`;
+      } else {
+        td.innerText = cellValue;
+      }
       tr.appendChild(td);
     });
     tableBody.appendChild(tr);
