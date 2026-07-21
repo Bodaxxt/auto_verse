@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auro Verse | Registration & Entry Portal</title>
+    <!-- Google Fonts: Cairo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo.jpg" alt="Auro Verse Logo" class="logo-img">
+                <span class="logo-text">AURO<span class="text-accent">VERSE</span></span>
+            </a>
+            <!-- Admin links are hidden to ensure private administrative access -->
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <div class="hero-logo-container">
+                <img src="logo.jpg" alt="Auro Verse" class="hero-logo">
+            </div>
+            <span class="badge">REGISTRATION & ENTRY PORTAL - 2026</span>
+            <h1>Join the Auro Verse Automotive Event</h1>
+            <p>The largest and most exciting automotive and motor show of the year. If you own a unique vehicle or want to organize the event with us, register your request now.</p>
+            <a href="#categories-section" class="btn btn-primary">Start Application <i class="fas fa-chevron-down"></i></a>
+        </div>
+        <div class="hero-glow"></div>
+    </header>
+
+    <!-- Categories Section -->
+    <section id="categories-section" class="categories-section">
+        <div class="section-header">
+            <h2>Choose Your Registration Category</h2>
+            <p>Click on a category below to fill the specific application form and upload your photos.</p>
+        </div>
+        
+        <!-- Wide Category Buttons -->
+        <div class="wide-categories-list">
+            
+            <!-- 1: Classic Cars -->
+            <div class="wide-category-btn classic" data-category="classic_cars" onclick="selectCategory('classic_cars')">
+                <div class="wide-btn-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="wide-btn-content">
+                    <div class="wide-btn-icon"><i class="fas fa-car-side"></i></div>
+                    <div class="wide-btn-text">
+                        <h3>Classic Cars</h3>
+                        <p>For distinguished owners of rare, vintage, and historic classic automobiles.</p>
+                    </div>
+                    <span class="wide-select-badge">Apply & Register <i class="fas fa-chevron-right"></i></span>
+                </div>
+                <div class="wide-btn-glow"></div>
+            </div>
+
+            <!-- 2: Exotic Cars -->
+            <div class="wide-category-btn exotic" data-category="exotic_cars" onclick="selectCategory('exotic_cars')">
+                <div class="wide-btn-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="wide-btn-content">
+                    <div class="wide-btn-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="wide-btn-text">
+                        <h3>Exotic & Super Cars</h3>
+                        <p>For owners of high-performance supercars, hypercars, and luxury vehicles.</p>
+                    </div>
+                    <span class="wide-select-badge">Apply & Register <i class="fas fa-chevron-right"></i></span>
+                </div>
+                <div class="wide-btn-glow"></div>
+            </div>
+
+            <!-- 3: Sport Cars -->
+            <div class="wide-category-btn sport" data-category="sport_cars" onclick="selectCategory('sport_cars')">
+                <div class="wide-btn-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1617814076367-b759c7d7e738?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="wide-btn-content">
+                    <div class="wide-btn-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="wide-btn-text">
+                        <h3>Sport Cars</h3>
+                        <p>For modified performance cars, track builds, drift cars, and tuning projects.</p>
+                    </div>
+                    <span class="wide-select-badge">Apply & Register <i class="fas fa-chevron-right"></i></span>
+                </div>
+                <div class="wide-btn-glow"></div>
+            </div>
+
+            <!-- 4: Motorcycles -->
+            <div class="wide-category-btn motorcycles" data-category="motorcycles" onclick="selectCategory('motorcycles')">
+                <div class="wide-btn-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="wide-btn-content">
+                    <div class="wide-btn-icon"><i class="fas fa-motorcycle"></i></div>
+                    <div class="wide-btn-text">
+                        <h3>Motorcycles</h3>
+                        <p>For all categories of custom superbikes, cruisers, and performance motorcycles.</p>
+                    </div>
+                    <span class="wide-select-badge">Apply & Register <i class="fas fa-chevron-right"></i></span>
+                </div>
+                <div class="wide-btn-glow"></div>
+            </div>
+
+            <!-- 5: Organizers -->
+            <div class="wide-category-btn organizers" data-category="organizers" onclick="selectCategory('organizers')">
+                <div class="wide-btn-bg" style="background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1200&auto=format&fit=crop');"></div>
+                <div class="wide-btn-content">
+                    <div class="wide-btn-icon"><i class="fas fa-user-tie"></i></div>
+                    <div class="wide-btn-text">
+                        <h3>Apply as Organizer</h3>
+                        <p>To join our event team for crowd management, technical setup, or logistics support.</p>
+                    </div>
+                    <span class="wide-select-badge">Apply as Organizer <i class="fas fa-chevron-right"></i></span>
+                </div>
+                <div class="wide-btn-glow"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section id="form-section" class="form-section hidden">
+        <div class="form-container">
+            <div class="form-header">
+                <span class="form-category-tag" id="category-tag">Selected Category</span>
+                <h2 id="form-title">Application Form</h2>
+                <p>Fill in your contact info and specific vehicle/experience details for our committee to review.</p>
+            </div>
+            
+            <form id="request-form" onsubmit="submitForm(event)">
+                <!-- Hidden Field for Category Key -->
+                <input type="hidden" id="selected-category" name="category" value="">
+
+                <!-- Common Basic Fields -->
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="fullName"><i class="fas fa-user-astronaut"></i> Full Name <span class="required">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Enter your full name">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><i class="fas fa-envelope"></i> Email Address <span class="required">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="example@auroverse.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone"><i class="fas fa-phone-alt"></i> Phone Number <span class="required">*</span></label>
+                        <input type="tel" id="phone" name="phone" required placeholder="05xxxxxxxx">
+                    </div>
+
+                    <!-- Photo Upload File Attachment Field -->
+                    <div class="form-group full-width">
+                        <label id="photoInputLabel"><i class="fas fa-camera"></i> Vehicle Image (Required for entry)</label>
+                        <input type="file" id="photoInput" accept="image/*" onchange="handlePhotoSelect(event)" style="display:none;">
+                        
+                        <div class="file-custom-btn" id="file-custom-btn" onclick="document.getElementById('photoInput').click()">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <span id="upload-btn-text">Click here to upload an image from your device (PNG, JPG, WebP)</span>
+                        </div>
+                        
+                        <!-- File Preview Box -->
+                        <div id="file-preview-box" class="file-preview-box hidden">
+                            <img id="photo-preview-img" src="" alt="Selected Preview">
+                            <div class="file-info">
+                                <span id="file-name-text"></span>
+                                <button type="button" class="btn-remove-file" onclick="removeSelectedPhoto()"><i class="fas fa-trash-alt"></i> Remove Image</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dynamic Fields Injected Here -->
+                <div id="dynamic-fields-container" class="dynamic-fields-container">
+                    <!-- Javascript inserts dynamic fields here -->
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" id="submit-btn" class="btn btn-submit">
+                        <span class="btn-text">Submit Application</span>
+                        <i class="fas fa-paper-plane btn-icon"></i>
+                        <span class="spinner hidden"><i class="fas fa-circle-notch fa-spin"></i></span>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Success/Error Message Container -->
+            <div id="status-message" class="status-message hidden">
+                <div class="message-content">
+                    <i class="message-icon fas"></i>
+                    <p class="message-text"></p>
+                    <button type="button" class="btn btn-close-msg" onclick="closeStatusMessage()">OK</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <p>&copy; 2026 All Rights Reserved to <strong>Auro Verse</strong> Event.</p>
+        </div>
+    </footer>
+
+    <!-- Main JavaScript File -->
+    <script src="script.js"></script>
+</body>
+</html>
